@@ -1,0 +1,12 @@
+"use client";
+import { useDashboardData } from "./queries";
+import { formatBRL, parseMoney } from "@/lib/money";
+import { formatDateBR } from "@/lib/dates";
+import { today } from "@/lib/today";
+export function DashboardView() {
+  const { data, isLoading, error } = useDashboardData();
+  if (isLoading) return <div className="grid gap-4 md:grid-cols-4">{Array.from({ length: 4 }, (_, i) => <div className="h-28 animate-pulse rounded-lg bg-slate-200" key={i} />)}</div>;
+  if (error || !data) return <p>Não foi possível carregar o dashboard.</p>;
+  const month = today().slice(0, 7); const balance = data.accounts.reduce((sum, item) => sum.plus(parseMoney(item.current_balance)), parseMoney("0")); const pending = data.transactions.filter((item) => item.due_date.startsWith(month)); const payable = pending.filter((item) => item.direction === "EXPENSE").reduce((sum, item) => sum.plus(parseMoney(item.estimated_amount)), parseMoney("0")); const receivable = pending.filter((item) => item.direction === "INCOME").reduce((sum, item) => sum.plus(parseMoney(item.estimated_amount)), parseMoney("0")); const upcoming = data.transactions.filter((item) => item.due_date >= today()).sort((a,b) => a.due_date.localeCompare(b.due_date)).slice(0,5);
+  return <div className="space-y-8"><div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{[["Saldo atual",balance],["Saldo projetado",balance.plus(receivable).minus(payable)],["A pagar",payable],["A receber",receivable]].map(([label,value]) => <section className="rounded-lg border bg-white p-4" key={label as string}><p className="text-sm text-slate-600">{label as string}</p><strong className="text-xl">{formatBRL(value as typeof balance)}</strong></section>)}</div><section><h2 className="mb-3 text-lg font-semibold">Próximos vencimentos</h2>{upcoming.length ? <ul className="divide-y rounded-lg border bg-white">{upcoming.map((item) => <li className="flex justify-between gap-4 p-3" key={item.id}><span>{item.description}</span><span>{formatDateBR(item.due_date)} · {formatBRL(item.estimated_amount)}</span></li>)}</ul> : <p className="text-slate-600">Nenhum vencimento próximo.</p>}</section><section><h2 className="mb-3 text-lg font-semibold">Faturas abertas</h2>{data.invoices.filter((item) => item.status !== "PAID").map((item) => <p className="rounded border bg-white p-3" key={item.id}>Cartão #{item.credit_card_id} · {formatDateBR(item.due_date)} · {item.status}</p>) || <p>Nenhuma fatura em aberto.</p>}</section></div>;
+}

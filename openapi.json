@@ -1,0 +1,3762 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Fineasy API",
+        "version": "0.1.0"
+    },
+    "paths": {
+        "/health": {
+            "get": {
+                "tags": [
+                    "health"
+                ],
+                "summary": "Health",
+                "operationId": "health_health_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "additionalProperties": {
+                                        "type": "string"
+                                    },
+                                    "type": "object",
+                                    "title": "Response Health Health Get"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Register",
+                "operationId": "register_auth_register_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Credentials"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/token": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Login",
+                "operationId": "login_auth_token_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Credentials"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenPair"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/refresh": {
+            "post": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Refresh",
+                "operationId": "refresh_auth_refresh_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RefreshRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TokenPair"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/me": {
+            "get": {
+                "tags": [
+                    "auth"
+                ],
+                "summary": "Get Me",
+                "operationId": "get_me_auth_me_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/categories": {
+            "get": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "List Categories Endpoint",
+                "operationId": "list_categories_endpoint_categories_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/CategoryResponse"
+                                    },
+                                    "type": "array",
+                                    "title": "Response List Categories Endpoint Categories Get"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Create Category Endpoint",
+                "operationId": "create_category_endpoint_categories_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CategoryCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/categories/{category_id}": {
+            "patch": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Update Category Endpoint",
+                "operationId": "update_category_endpoint_categories__category_id__patch",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "category_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Category Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CategoryUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoryResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "categories"
+                ],
+                "summary": "Delete Category Endpoint",
+                "operationId": "delete_category_endpoint_categories__category_id__delete",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "category_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Category Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/credit-cards": {
+            "get": {
+                "tags": [
+                    "credit-cards"
+                ],
+                "summary": "List Credit Cards Endpoint",
+                "operationId": "list_credit_cards_endpoint_credit_cards_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/CreditCardResponse"
+                                    },
+                                    "type": "array",
+                                    "title": "Response List Credit Cards Endpoint Credit Cards Get"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "credit-cards"
+                ],
+                "summary": "Create Credit Card Endpoint",
+                "operationId": "create_credit_card_endpoint_credit_cards_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreditCardCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreditCardResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/credit-cards/{card_id}": {
+            "get": {
+                "tags": [
+                    "credit-cards"
+                ],
+                "summary": "Get Credit Card Endpoint",
+                "operationId": "get_credit_card_endpoint_credit_cards__card_id__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "card_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Card Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreditCardResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "credit-cards"
+                ],
+                "summary": "Update Credit Card Endpoint",
+                "operationId": "update_credit_card_endpoint_credit_cards__card_id__patch",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "card_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Card Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreditCardUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreditCardResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "credit-cards"
+                ],
+                "summary": "Delete Credit Card Endpoint",
+                "operationId": "delete_credit_card_endpoint_credit_cards__card_id__delete",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "card_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Card Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/invoices": {
+            "get": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "List Invoices Endpoint",
+                "operationId": "list_invoices_endpoint_invoices_get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "today",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "description": "User local date, YYYY-MM-DD",
+                            "title": "Today"
+                        },
+                        "description": "User local date, YYYY-MM-DD"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/InvoiceResponse"
+                                    },
+                                    "title": "Response List Invoices Endpoint Invoices Get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/invoices/{invoice_id}": {
+            "get": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Get Invoice Endpoint",
+                "operationId": "get_invoice_endpoint_invoices__invoice_id__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "invoice_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Invoice Id"
+                        }
+                    },
+                    {
+                        "name": "today",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "description": "User local date, YYYY-MM-DD",
+                            "title": "Today"
+                        },
+                        "description": "User local date, YYYY-MM-DD"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/invoices/{invoice_id}/pay": {
+            "post": {
+                "tags": [
+                    "invoices"
+                ],
+                "summary": "Pay Invoice Endpoint",
+                "operationId": "pay_invoice_endpoint_invoices__invoice_id__pay_post",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "invoice_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Invoice Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InvoicePayment"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InvoiceResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accounts": {
+            "get": {
+                "tags": [
+                    "accounts"
+                ],
+                "summary": "List Accounts Endpoint",
+                "operationId": "list_accounts_endpoint_accounts_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/AccountResponse"
+                                    },
+                                    "type": "array",
+                                    "title": "Response List Accounts Endpoint Accounts Get"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "accounts"
+                ],
+                "summary": "Create Account Endpoint",
+                "operationId": "create_account_endpoint_accounts_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AccountCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AccountResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/accounts/{account_id}/projected-balance": {
+            "get": {
+                "tags": [
+                    "accounts"
+                ],
+                "summary": "Get Projected Balance Endpoint",
+                "operationId": "get_projected_balance_endpoint_accounts__account_id__projected_balance_get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Account Id"
+                        }
+                    },
+                    {
+                        "name": "today",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "date",
+                            "description": "User local date, YYYY-MM-DD",
+                            "title": "Today"
+                        },
+                        "description": "User local date, YYYY-MM-DD"
+                    },
+                    {
+                        "name": "target_date",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string",
+                                    "format": "date"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "Projection horizon, YYYY-MM-DD",
+                            "title": "Target Date"
+                        },
+                        "description": "Projection horizon, YYYY-MM-DD"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ProjectedBalanceResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/accounts/{account_id}": {
+            "get": {
+                "tags": [
+                    "accounts"
+                ],
+                "summary": "Get Account Endpoint",
+                "operationId": "get_account_endpoint_accounts__account_id__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Account Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AccountResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "accounts"
+                ],
+                "summary": "Update Account Endpoint",
+                "operationId": "update_account_endpoint_accounts__account_id__patch",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Account Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AccountUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AccountResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "accounts"
+                ],
+                "summary": "Delete Account Endpoint",
+                "operationId": "delete_account_endpoint_accounts__account_id__delete",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Account Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transactions": {
+            "post": {
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Create Transaction Endpoint",
+                "operationId": "create_transaction_endpoint_transactions_post",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransactionCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "List Transactions Endpoint",
+                "operationId": "list_transactions_endpoint_transactions_get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "month",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "type": "string",
+                                    "pattern": "^\\d{4}-(0[1-9]|1[0-2])$"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "description": "YYYY-MM",
+                            "title": "Month"
+                        },
+                        "description": "YYYY-MM"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "anyOf": [
+                                {
+                                    "$ref": "#/components/schemas/TransactionStatus"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ],
+                            "title": "Status"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "default": 1,
+                            "title": "Page"
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "maximum": 100,
+                            "minimum": 1,
+                            "default": 20,
+                            "title": "Per Page"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TransactionResponse"
+                                    },
+                                    "title": "Response List Transactions Endpoint Transactions Get"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transactions/{transaction_id}": {
+            "get": {
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Get Transaction Endpoint",
+                "operationId": "get_transaction_endpoint_transactions__transaction_id__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "transaction_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Transaction Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Update Transaction Endpoint",
+                "operationId": "update_transaction_endpoint_transactions__transaction_id__patch",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "transaction_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Transaction Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransactionPatch"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Delete Transaction Endpoint",
+                "operationId": "delete_transaction_endpoint_transactions__transaction_id__delete",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "transaction_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Transaction Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transactions/{transaction_id}/complete": {
+            "post": {
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Complete Transaction Endpoint",
+                "operationId": "complete_transaction_endpoint_transactions__transaction_id__complete_post",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "transaction_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Transaction Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransactionComplete"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transactions/{transaction_id}/amount": {
+            "patch": {
+                "tags": [
+                    "transactions"
+                ],
+                "summary": "Edit Completed Amount Endpoint",
+                "operationId": "edit_completed_amount_endpoint_transactions__transaction_id__amount_patch",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "transaction_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Transaction Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransactionAmountUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TransactionResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/transfers": {
+            "get": {
+                "tags": [
+                    "transfers"
+                ],
+                "summary": "List Transfers Endpoint",
+                "operationId": "list_transfers_endpoint_transfers_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/TransferResponse"
+                                    },
+                                    "type": "array",
+                                    "title": "Response List Transfers Endpoint Transfers Get"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "transfers"
+                ],
+                "summary": "Create Transfer Endpoint",
+                "operationId": "create_transfer_endpoint_transfers_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TransferResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/transfers/{transfer_id}": {
+            "get": {
+                "tags": [
+                    "transfers"
+                ],
+                "summary": "Get Transfer Endpoint",
+                "operationId": "get_transfer_endpoint_transfers__transfer_id__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "transfer_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Transfer Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TransferResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/recurrence-rules/simulate": {
+            "post": {
+                "tags": [
+                    "recurrence-rules"
+                ],
+                "summary": "Simulate Recurrence Rule Endpoint",
+                "operationId": "simulate_recurrence_rule_endpoint_recurrence_rules_simulate_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RecurrenceCreate"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurrencePreview"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/recurrence-rules/confirm": {
+            "post": {
+                "tags": [
+                    "recurrence-rules"
+                ],
+                "summary": "Confirm Recurrence Rule Endpoint",
+                "operationId": "confirm_recurrence_rule_endpoint_recurrence_rules_confirm_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RecurrenceConfirm"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurrenceResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/recurrence-rules": {
+            "get": {
+                "tags": [
+                    "recurrence-rules"
+                ],
+                "summary": "List Recurrence Rules Endpoint",
+                "operationId": "list_recurrence_rules_endpoint_recurrence_rules_get",
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "items": {
+                                        "$ref": "#/components/schemas/RecurrenceResponse"
+                                    },
+                                    "type": "array",
+                                    "title": "Response List Recurrence Rules Endpoint Recurrence Rules Get"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/recurrence-rules/{rule_id}": {
+            "get": {
+                "tags": [
+                    "recurrence-rules"
+                ],
+                "summary": "Get Recurrence Rule Endpoint",
+                "operationId": "get_recurrence_rule_endpoint_recurrence_rules__rule_id__get",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "rule_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Rule Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurrenceResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "recurrence-rules"
+                ],
+                "summary": "Update Recurrence Rule Endpoint",
+                "operationId": "update_recurrence_rule_endpoint_recurrence_rules__rule_id__patch",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "rule_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Rule Id"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RecurrenceUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RecurrenceResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "recurrence-rules"
+                ],
+                "summary": "Delete Recurrence Rule Endpoint",
+                "operationId": "delete_recurrence_rule_endpoint_recurrence_rules__rule_id__delete",
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "rule_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "title": "Rule Id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Successful Response"
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/purchases/simulate": {
+            "post": {
+                "tags": [
+                    "purchases"
+                ],
+                "summary": "Simulate Purchase Endpoint",
+                "operationId": "simulate_purchase_endpoint_purchases_simulate_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PurchaseSimulationRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PurchasePreview"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        },
+        "/purchases/confirm": {
+            "post": {
+                "tags": [
+                    "purchases"
+                ],
+                "summary": "Confirm Purchase Endpoint",
+                "operationId": "confirm_purchase_endpoint_purchases_confirm_post",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PurchaseConfirmRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful Response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PurchaseResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HTTPValidationError"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "HTTPBearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AccountCreate": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 1,
+                        "title": "Name"
+                    },
+                    "account_type": {
+                        "$ref": "#/components/schemas/AccountType"
+                    },
+                    "initial_balance": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Initial Balance",
+                        "default": "0.00"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "account_type"
+                ],
+                "title": "AccountCreate"
+            },
+            "AccountResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "account_type": {
+                        "$ref": "#/components/schemas/AccountType"
+                    },
+                    "initial_balance": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Initial Balance"
+                    },
+                    "current_balance": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Current Balance"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Updated At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "account_type",
+                    "initial_balance",
+                    "current_balance",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "AccountResponse"
+            },
+            "AccountType": {
+                "type": "string",
+                "enum": [
+                    "CASH",
+                    "BANK",
+                    "WALLET"
+                ],
+                "title": "AccountType",
+                "description": "Physical account kinds defined by the domain."
+            },
+            "AccountUpdate": {
+                "properties": {
+                    "name": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "maxLength": 120,
+                                "minLength": 1
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Name"
+                    },
+                    "account_type": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/AccountType"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "initial_balance": {
+                        "anyOf": [
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Initial Balance"
+                    }
+                },
+                "type": "object",
+                "title": "AccountUpdate"
+            },
+            "CategoryCreate": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 1,
+                        "title": "Name"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "title": "CategoryCreate"
+            },
+            "CategoryResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Updated At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "CategoryResponse"
+            },
+            "CategoryUpdate": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 1,
+                        "title": "Name"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "title": "CategoryUpdate"
+            },
+            "Credentials": {
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "maxLength": 320,
+                        "minLength": 3,
+                        "format": "email",
+                        "title": "Email"
+                    },
+                    "password": {
+                        "type": "string",
+                        "maxLength": 128,
+                        "minLength": 8,
+                        "title": "Password"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "email",
+                    "password"
+                ],
+                "title": "Credentials"
+            },
+            "CreditCardCreate": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "minLength": 1,
+                        "title": "Name"
+                    },
+                    "closing_day": {
+                        "type": "integer",
+                        "maximum": 31.0,
+                        "minimum": 1.0,
+                        "title": "Closing Day"
+                    },
+                    "due_day": {
+                        "type": "integer",
+                        "maximum": 31.0,
+                        "minimum": 1.0,
+                        "title": "Due Day"
+                    },
+                    "suggested_payment_account_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Suggested Payment Account Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name",
+                    "closing_day",
+                    "due_day"
+                ],
+                "title": "CreditCardCreate"
+            },
+            "CreditCardResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "name": {
+                        "type": "string",
+                        "title": "Name"
+                    },
+                    "closing_day": {
+                        "type": "integer",
+                        "title": "Closing Day"
+                    },
+                    "due_day": {
+                        "type": "integer",
+                        "title": "Due Day"
+                    },
+                    "suggested_payment_account_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Suggested Payment Account Id"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Updated At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "name",
+                    "closing_day",
+                    "due_day",
+                    "suggested_payment_account_id",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "CreditCardResponse"
+            },
+            "CreditCardUpdate": {
+                "properties": {
+                    "name": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "maxLength": 120,
+                                "minLength": 1
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Name"
+                    },
+                    "closing_day": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "maximum": 31.0,
+                                "minimum": 1.0
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Closing Day"
+                    },
+                    "due_day": {
+                        "anyOf": [
+                            {
+                                "type": "integer",
+                                "maximum": 31.0,
+                                "minimum": 1.0
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Due Day"
+                    },
+                    "suggested_payment_account_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Suggested Payment Account Id"
+                    }
+                },
+                "type": "object",
+                "title": "CreditCardUpdate"
+            },
+            "HTTPValidationError": {
+                "properties": {
+                    "detail": {
+                        "items": {
+                            "$ref": "#/components/schemas/ValidationError"
+                        },
+                        "type": "array",
+                        "title": "Detail"
+                    }
+                },
+                "type": "object",
+                "title": "HTTPValidationError"
+            },
+            "InstallmentInput": {
+                "properties": {
+                    "amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Amount"
+                    },
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Due Date"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "amount",
+                    "due_date"
+                ],
+                "title": "InstallmentInput"
+            },
+            "InstallmentPreview": {
+                "properties": {
+                    "installment_number": {
+                        "type": "integer",
+                        "title": "Installment Number"
+                    },
+                    "amount": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Amount"
+                    },
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Due Date"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "installment_number",
+                    "amount",
+                    "due_date"
+                ],
+                "title": "InstallmentPreview"
+            },
+            "InvoicePayment": {
+                "properties": {
+                    "account_id": {
+                        "type": "integer",
+                        "title": "Account Id"
+                    },
+                    "amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Amount"
+                    },
+                    "effective_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Effective Date"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "account_id",
+                    "amount",
+                    "effective_date"
+                ],
+                "title": "InvoicePayment"
+            },
+            "InvoiceResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "credit_card_id": {
+                        "type": "integer",
+                        "title": "Credit Card Id"
+                    },
+                    "closing_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Closing Date"
+                    },
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Due Date"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/InvoiceStatus"
+                    },
+                    "payment_transaction_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Payment Transaction Id"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Updated At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "credit_card_id",
+                    "closing_date",
+                    "due_date",
+                    "status",
+                    "payment_transaction_id",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "InvoiceResponse"
+            },
+            "InvoiceStatus": {
+                "type": "string",
+                "enum": [
+                    "OPEN",
+                    "CLOSED",
+                    "PAID"
+                ],
+                "title": "InvoiceStatus",
+                "description": "Payment lifecycle of a credit card invoice."
+            },
+            "ProjectedBalanceResponse": {
+                "properties": {
+                    "account_id": {
+                        "type": "integer",
+                        "title": "Account Id"
+                    },
+                    "today": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Today"
+                    },
+                    "target_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Target Date"
+                    },
+                    "current_balance": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Current Balance"
+                    },
+                    "projected_balance": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Projected Balance"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "account_id",
+                    "today",
+                    "target_date",
+                    "current_balance",
+                    "projected_balance"
+                ],
+                "title": "ProjectedBalanceResponse"
+            },
+            "PurchaseConfirmRequest": {
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "title": "Description"
+                    },
+                    "total_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Total Amount"
+                    },
+                    "purchase_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Purchase Date"
+                    },
+                    "installment_total": {
+                        "type": "integer",
+                        "maximum": 120.0,
+                        "minimum": 1.0,
+                        "title": "Installment Total"
+                    },
+                    "account_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Account Id"
+                    },
+                    "credit_card_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Credit Card Id"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    },
+                    "installments": {
+                        "items": {
+                            "$ref": "#/components/schemas/InstallmentInput"
+                        },
+                        "type": "array",
+                        "maxItems": 120,
+                        "minItems": 1,
+                        "title": "Installments"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "total_amount",
+                    "purchase_date",
+                    "installment_total",
+                    "installments"
+                ],
+                "title": "PurchaseConfirmRequest"
+            },
+            "PurchasePreview": {
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "title": "Description"
+                    },
+                    "total_amount": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Total Amount"
+                    },
+                    "purchase_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Purchase Date"
+                    },
+                    "installment_total": {
+                        "type": "integer",
+                        "title": "Installment Total"
+                    },
+                    "installments": {
+                        "items": {
+                            "$ref": "#/components/schemas/InstallmentPreview"
+                        },
+                        "type": "array",
+                        "title": "Installments"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "total_amount",
+                    "purchase_date",
+                    "installment_total",
+                    "installments"
+                ],
+                "title": "PurchasePreview"
+            },
+            "PurchaseResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "description": {
+                        "type": "string",
+                        "title": "Description"
+                    },
+                    "total_amount": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Total Amount"
+                    },
+                    "purchase_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Purchase Date"
+                    },
+                    "installment_total": {
+                        "type": "integer",
+                        "title": "Installment Total"
+                    },
+                    "account_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Account Id"
+                    },
+                    "credit_card_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Credit Card Id"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Updated At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "description",
+                    "total_amount",
+                    "purchase_date",
+                    "installment_total",
+                    "account_id",
+                    "credit_card_id",
+                    "category_id",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "PurchaseResponse"
+            },
+            "PurchaseSimulationRequest": {
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "title": "Description"
+                    },
+                    "total_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Total Amount"
+                    },
+                    "purchase_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Purchase Date"
+                    },
+                    "installment_total": {
+                        "type": "integer",
+                        "maximum": 120.0,
+                        "minimum": 1.0,
+                        "title": "Installment Total"
+                    },
+                    "account_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Account Id"
+                    },
+                    "credit_card_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Credit Card Id"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "total_amount",
+                    "purchase_date",
+                    "installment_total"
+                ],
+                "title": "PurchaseSimulationRequest"
+            },
+            "RecurrenceConfirm": {
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "title": "Description"
+                    },
+                    "account_id": {
+                        "type": "integer",
+                        "title": "Account Id"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    },
+                    "anchor_day": {
+                        "type": "integer",
+                        "maximum": 31.0,
+                        "minimum": 1.0,
+                        "title": "Anchor Day"
+                    },
+                    "start_month": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Start Month"
+                    },
+                    "count": {
+                        "type": "integer",
+                        "maximum": 36.0,
+                        "minimum": 1.0,
+                        "title": "Count",
+                        "default": 12
+                    },
+                    "variable_amount": {
+                        "type": "boolean",
+                        "title": "Variable Amount",
+                        "default": false
+                    },
+                    "estimated_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Estimated Amount"
+                    },
+                    "direction": {
+                        "$ref": "#/components/schemas/TransactionDirection"
+                    },
+                    "occurrences": {
+                        "items": {
+                            "$ref": "#/components/schemas/RecurrenceOccurrenceInput"
+                        },
+                        "type": "array",
+                        "maxItems": 36,
+                        "minItems": 1,
+                        "title": "Occurrences"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "account_id",
+                    "anchor_day",
+                    "start_month",
+                    "estimated_amount",
+                    "direction",
+                    "occurrences"
+                ],
+                "title": "RecurrenceConfirm"
+            },
+            "RecurrenceCreate": {
+                "properties": {
+                    "description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "title": "Description"
+                    },
+                    "account_id": {
+                        "type": "integer",
+                        "title": "Account Id"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    },
+                    "anchor_day": {
+                        "type": "integer",
+                        "maximum": 31.0,
+                        "minimum": 1.0,
+                        "title": "Anchor Day"
+                    },
+                    "start_month": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Start Month"
+                    },
+                    "count": {
+                        "type": "integer",
+                        "maximum": 36.0,
+                        "minimum": 1.0,
+                        "title": "Count",
+                        "default": 12
+                    },
+                    "variable_amount": {
+                        "type": "boolean",
+                        "title": "Variable Amount",
+                        "default": false
+                    },
+                    "estimated_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Estimated Amount"
+                    },
+                    "direction": {
+                        "$ref": "#/components/schemas/TransactionDirection"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "description",
+                    "account_id",
+                    "anchor_day",
+                    "start_month",
+                    "estimated_amount",
+                    "direction"
+                ],
+                "title": "RecurrenceCreate"
+            },
+            "RecurrenceOccurrenceInput": {
+                "properties": {
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Due Date"
+                    },
+                    "estimated_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Estimated Amount"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "due_date",
+                    "estimated_amount"
+                ],
+                "title": "RecurrenceOccurrenceInput"
+            },
+            "RecurrenceOccurrencePreview": {
+                "properties": {
+                    "occurrence_number": {
+                        "type": "integer",
+                        "title": "Occurrence Number"
+                    },
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Due Date"
+                    },
+                    "estimated_amount": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Estimated Amount"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "occurrence_number",
+                    "due_date",
+                    "estimated_amount"
+                ],
+                "title": "RecurrenceOccurrencePreview"
+            },
+            "RecurrencePreview": {
+                "properties": {
+                    "occurrences": {
+                        "items": {
+                            "$ref": "#/components/schemas/RecurrenceOccurrencePreview"
+                        },
+                        "type": "array",
+                        "title": "Occurrences"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "occurrences"
+                ],
+                "title": "RecurrencePreview"
+            },
+            "RecurrenceResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "description": {
+                        "type": "string",
+                        "title": "Description"
+                    },
+                    "anchor_day": {
+                        "type": "integer",
+                        "title": "Anchor Day"
+                    },
+                    "variable_amount": {
+                        "type": "boolean",
+                        "title": "Variable Amount"
+                    },
+                    "estimated_amount": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Estimated Amount"
+                    },
+                    "account_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Account Id"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Updated At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "description",
+                    "anchor_day",
+                    "variable_amount",
+                    "estimated_amount",
+                    "account_id",
+                    "category_id",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "RecurrenceResponse"
+            },
+            "RecurrenceUpdate": {
+                "properties": {
+                    "description": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "maxLength": 255,
+                                "minLength": 1
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Description"
+                    },
+                    "estimated_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Estimated Amount"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    }
+                },
+                "type": "object",
+                "title": "RecurrenceUpdate"
+            },
+            "RefreshRequest": {
+                "properties": {
+                    "refresh_token": {
+                        "type": "string",
+                        "title": "Refresh Token"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "refresh_token"
+                ],
+                "title": "RefreshRequest"
+            },
+            "TokenPair": {
+                "properties": {
+                    "access_token": {
+                        "type": "string",
+                        "title": "Access Token"
+                    },
+                    "refresh_token": {
+                        "type": "string",
+                        "title": "Refresh Token"
+                    },
+                    "token_type": {
+                        "type": "string",
+                        "title": "Token Type",
+                        "default": "bearer"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "access_token",
+                    "refresh_token"
+                ],
+                "title": "TokenPair"
+            },
+            "TransactionAmountUpdate": {
+                "properties": {
+                    "amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Amount"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "amount"
+                ],
+                "title": "TransactionAmountUpdate",
+                "description": "New amount for an already COMPLETED transaction."
+            },
+            "TransactionComplete": {
+                "properties": {
+                    "amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Amount"
+                    },
+                    "effective_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Effective Date"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "amount",
+                    "effective_date"
+                ],
+                "title": "TransactionComplete"
+            },
+            "TransactionCreate": {
+                "properties": {
+                    "account_id": {
+                        "type": "integer",
+                        "title": "Account Id"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    },
+                    "description": {
+                        "type": "string",
+                        "maxLength": 255,
+                        "minLength": 1,
+                        "title": "Description"
+                    },
+                    "direction": {
+                        "$ref": "#/components/schemas/TransactionDirection"
+                    },
+                    "estimated_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Estimated Amount"
+                    },
+                    "competence": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Competence"
+                    },
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Due Date"
+                    },
+                    "amount_locked": {
+                        "type": "boolean",
+                        "title": "Amount Locked",
+                        "default": false
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "account_id",
+                    "description",
+                    "direction",
+                    "estimated_amount",
+                    "due_date"
+                ],
+                "title": "TransactionCreate"
+            },
+            "TransactionDirection": {
+                "type": "string",
+                "enum": [
+                    "INCOME",
+                    "EXPENSE"
+                ],
+                "title": "TransactionDirection",
+                "description": "Direction of the cash movement represented by a positive amount."
+            },
+            "TransactionPatch": {
+                "properties": {
+                    "description": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "maxLength": 255,
+                                "minLength": 1
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Description"
+                    },
+                    "estimated_amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Estimated Amount"
+                    },
+                    "due_date": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Due Date"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    },
+                    "amount_locked": {
+                        "anyOf": [
+                            {
+                                "type": "boolean"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Amount Locked"
+                    },
+                    "competence": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Competence"
+                    },
+                    "amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Amount"
+                    },
+                    "effective_date": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Effective Date"
+                    },
+                    "status": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/TransactionStatus"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                },
+                "type": "object",
+                "title": "TransactionPatch",
+                "description": "Fields editable on a transaction in any status.\n\n``status`` only accepts the cancellation transition in the service layer."
+            },
+            "TransactionResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "account_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Account Id"
+                    },
+                    "category_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Category Id"
+                    },
+                    "purchase_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Purchase Id"
+                    },
+                    "recurrence_rule_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Recurrence Rule Id"
+                    },
+                    "invoice_id": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Invoice Id"
+                    },
+                    "description": {
+                        "type": "string",
+                        "title": "Description"
+                    },
+                    "direction": {
+                        "$ref": "#/components/schemas/TransactionDirection"
+                    },
+                    "amount": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Amount"
+                    },
+                    "estimated_amount": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Estimated Amount"
+                    },
+                    "competence": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Competence"
+                    },
+                    "due_date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Due Date"
+                    },
+                    "effective_date": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Effective Date"
+                    },
+                    "status": {
+                        "$ref": "#/components/schemas/TransactionStatus"
+                    },
+                    "installment_number": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Installment Number"
+                    },
+                    "installment_total": {
+                        "anyOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Installment Total"
+                    },
+                    "amount_locked": {
+                        "type": "boolean",
+                        "title": "Amount Locked"
+                    },
+                    "deleted_at": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "format": "date-time"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Deleted At"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Updated At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "account_id",
+                    "category_id",
+                    "purchase_id",
+                    "recurrence_rule_id",
+                    "invoice_id",
+                    "description",
+                    "direction",
+                    "amount",
+                    "estimated_amount",
+                    "competence",
+                    "due_date",
+                    "effective_date",
+                    "status",
+                    "installment_number",
+                    "installment_total",
+                    "amount_locked",
+                    "deleted_at",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "TransactionResponse"
+            },
+            "TransactionStatus": {
+                "type": "string",
+                "enum": [
+                    "PENDING",
+                    "COMPLETED",
+                    "CANCELLED"
+                ],
+                "title": "TransactionStatus",
+                "description": "Lifecycle status for a cash flow transaction."
+            },
+            "TransferCreate": {
+                "properties": {
+                    "from_account_id": {
+                        "type": "integer",
+                        "title": "From Account Id"
+                    },
+                    "to_account_id": {
+                        "type": "integer",
+                        "title": "To Account Id"
+                    },
+                    "amount": {
+                        "anyOf": [
+                            {
+                                "type": "number",
+                                "exclusiveMinimum": 0.0
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+                            }
+                        ],
+                        "title": "Amount"
+                    },
+                    "description": {
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "maxLength": 255
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Description"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Date"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "from_account_id",
+                    "to_account_id",
+                    "amount",
+                    "date"
+                ],
+                "title": "TransferCreate"
+            },
+            "TransferResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "title": "User Id"
+                    },
+                    "from_account_id": {
+                        "type": "integer",
+                        "title": "From Account Id"
+                    },
+                    "to_account_id": {
+                        "type": "integer",
+                        "title": "To Account Id"
+                    },
+                    "amount": {
+                        "type": "string",
+                        "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                        "title": "Amount"
+                    },
+                    "description": {
+                        "anyOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "title": "Description"
+                    },
+                    "date": {
+                        "type": "string",
+                        "format": "date",
+                        "title": "Date"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Updated At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "user_id",
+                    "from_account_id",
+                    "to_account_id",
+                    "amount",
+                    "description",
+                    "date",
+                    "created_at",
+                    "updated_at"
+                ],
+                "title": "TransferResponse"
+            },
+            "UserResponse": {
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "title": "Id"
+                    },
+                    "email": {
+                        "type": "string",
+                        "title": "Email"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Created At"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id",
+                    "email",
+                    "created_at"
+                ],
+                "title": "UserResponse"
+            },
+            "ValidationError": {
+                "properties": {
+                    "loc": {
+                        "items": {
+                            "anyOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "integer"
+                                }
+                            ]
+                        },
+                        "type": "array",
+                        "title": "Location"
+                    },
+                    "msg": {
+                        "type": "string",
+                        "title": "Message"
+                    },
+                    "type": {
+                        "type": "string",
+                        "title": "Error Type"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                ],
+                "title": "ValidationError"
+            }
+        },
+        "securitySchemes": {
+            "HTTPBearer": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
