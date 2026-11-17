@@ -1,0 +1,17 @@
+services:
+  e2e-db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: fineasy_e2e
+      POSTGRES_USER: fineasy_e2e
+      POSTGRES_PASSWORD: fineasy_e2e
+    ports:
+      - "127.0.0.1:55432:5432"
+    tmpfs:
+      - /var/lib/postgresql/data:rw,noexec,nosuid,size=512m
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fineasy_e2e -d fineasy_e2e"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+    restart: "no"

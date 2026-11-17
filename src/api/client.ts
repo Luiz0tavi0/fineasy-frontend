@@ -9,9 +9,9 @@ export type SessionBridge = {
   clear(): Promise<void>;
 };
 
-let refreshInFlight: Promise<TokenPair | null> | null = null;
-
 export function createApiClient(baseUrl: string, session: SessionBridge) {
+  let refreshInFlight: Promise<TokenPair | null> | null = null;
+
   async function authorizedFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
     const request = input instanceof Request ? input : new Request(input, init);
     const retryRequest = request.clone();

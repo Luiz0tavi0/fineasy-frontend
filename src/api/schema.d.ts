@@ -89,6 +89,42 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/budgets": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Monthly Budgets Endpoint */
+        get: operations["list_monthly_budgets_endpoint_budgets_get"];
+        put?: never;
+        /** Create Budget Endpoint */
+        post: operations["create_budget_endpoint_budgets_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/budgets/{budget_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Budget Endpoint */
+        delete: operations["delete_budget_endpoint_budgets__budget_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update Budget Endpoint */
+        patch: operations["update_budget_endpoint_budgets__budget_id__patch"];
+        trace?: never;
+    };
     "/categories": {
         parameters: {
             query?: never;
@@ -248,6 +284,24 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/accounts/{account_id}/reconciliations": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Reconciliations Endpoint */
+        get: operations["list_reconciliations_endpoint_accounts__account_id__reconciliations_get"];
+        put?: never;
+        /** Create Reconciliation Endpoint */
+        post: operations["create_reconciliation_endpoint_accounts__account_id__reconciliations_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/accounts/{account_id}": {
         parameters: {
             query?: never;
@@ -279,6 +333,74 @@ export interface paths {
         put?: never;
         /** Create Transaction Endpoint */
         post: operations["create_transaction_endpoint_transactions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/transactions/unified": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Unified Operation Endpoint */
+        post: operations["create_unified_operation_endpoint_transactions_unified_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/transactions/upcoming": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Upcoming Transactions Endpoint */
+        get: operations["upcoming_transactions_endpoint_transactions_upcoming_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/transactions/{transaction_id}/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Transaction History Endpoint */
+        get: operations["list_transaction_history_endpoint_transactions__transaction_id__history_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/transactions/{transaction_id}/history/{history_id}/undo": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Undo Transaction History Endpoint */
+        post: operations["undo_transaction_history_endpoint_transactions__transaction_id__history__history_id__undo_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -477,6 +599,127 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/reports/monthly": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Monthly Report Endpoint */
+        get: operations["monthly_report_endpoint_reports_monthly_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/imports/preview": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Preview Import Endpoint */
+        post: operations["preview_import_endpoint_imports_preview_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/imports/{batch_id}/confirm": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Confirm Import Endpoint */
+        post: operations["confirm_import_endpoint_imports__batch_id__confirm_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/templates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Templates Endpoint */
+        get: operations["list_templates_endpoint_templates_get"];
+        put?: never;
+        /** Create Template Endpoint */
+        post: operations["create_template_endpoint_templates_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/templates/from-transaction/{transaction_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Template From Transaction Endpoint */
+        post: operations["create_template_from_transaction_endpoint_templates_from_transaction__transaction_id__post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/templates/{template_id}/transactions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Transaction From Template Endpoint */
+        post: operations["create_transaction_from_template_endpoint_templates__template_id__transactions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/templates/{template_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Template Endpoint */
+        delete: operations["delete_template_endpoint_templates__template_id__delete"];
+        options?: never;
+        head?: never;
+        /** Update Template Endpoint */
+        patch: operations["update_template_endpoint_templates__template_id__patch"];
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -528,10 +771,107 @@ export interface components {
             /** Initial Balance */
             initial_balance?: number | string | null;
         };
+        /** Body_preview_import_endpoint_imports_preview_post */
+        Body_preview_import_endpoint_imports_preview_post: {
+            /** Account Id */
+            account_id: number;
+            /**
+             * Source Format
+             * @enum {string}
+             */
+            source_format: "CSV" | "OFX";
+            /**
+             * File
+             * Format: binary
+             */
+            file: string;
+            /**
+             * Date Column
+             * @default date
+             */
+            date_column: string;
+            /**
+             * Description Column
+             * @default description
+             */
+            description_column: string;
+            /**
+             * Amount Column
+             * @default amount
+             */
+            amount_column: string;
+            /** Identifier Column */
+            identifier_column?: string | null;
+        };
+        /** BudgetCreate */
+        BudgetCreate: {
+            /** Category Id */
+            category_id: number;
+            /** Month */
+            month: string;
+            /** Amount */
+            amount: number | string;
+        };
+        /** BudgetEntry */
+        BudgetEntry: {
+            /** Id */
+            id: number;
+            /** Category Id */
+            category_id: number;
+            /** Category Name */
+            category_name: string;
+            /** Month */
+            month: string;
+            /** Budget Amount */
+            budget_amount: string;
+            /** Spent Amount */
+            spent_amount: string;
+            /** Planned Amount */
+            planned_amount: string;
+            /** Remaining Amount */
+            remaining_amount: string;
+            /** Usage Percent */
+            usage_percent: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "OK" | "WARNING" | "EXCEEDED";
+        };
+        /** BudgetUpdate */
+        BudgetUpdate: {
+            /** Amount */
+            amount: number | string;
+        };
+        /** CategoryBudgetResponse */
+        CategoryBudgetResponse: {
+            /** Id */
+            id: number;
+            /** Category Id */
+            category_id: number;
+            /**
+             * Period Start
+             * Format: date
+             */
+            period_start: string;
+            /** Amount */
+            amount: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
         /** CategoryCreate */
         CategoryCreate: {
             /** Name */
             name: string;
+            direction?: components["schemas"]["TransactionDirection"] | null;
         };
         /** CategoryResponse */
         CategoryResponse: {
@@ -539,6 +879,7 @@ export interface components {
             id: number;
             /** Name */
             name: string;
+            direction: components["schemas"]["TransactionDirection"] | null;
             /**
              * Created At
              * Format: date-time
@@ -554,6 +895,23 @@ export interface components {
         CategoryUpdate: {
             /** Name */
             name: string;
+            direction?: components["schemas"]["TransactionDirection"] | null;
+        };
+        /** CreateFromTemplate */
+        CreateFromTemplate: {
+            /**
+             * Due Date
+             * Format: date
+             */
+            due_date: string;
+            /** Amount */
+            amount?: number | string | null;
+            /** Account Id */
+            account_id?: number | null;
+            /** Category Id */
+            category_id?: number | null;
+            /** Description */
+            description?: string | null;
         };
         /** Credentials */
         Credentials: {
@@ -615,6 +973,79 @@ export interface components {
             /** Detail */
             detail?: components["schemas"]["ValidationError"][];
         };
+        /** ImportConfirmRequest */
+        ImportConfirmRequest: {
+            /** Rows */
+            rows: components["schemas"]["ImportedTransactionInput-Input"][];
+        };
+        /** ImportConfirmResponse */
+        ImportConfirmResponse: {
+            /** Imported Count */
+            imported_count: number;
+            /** Duplicate Count */
+            duplicate_count: number;
+            /** Transactions */
+            transactions: components["schemas"]["TransactionResponse"][];
+        };
+        /** ImportPreviewResponse */
+        ImportPreviewResponse: {
+            /** Batch Id */
+            batch_id: number;
+            /** Account Id */
+            account_id: number;
+            /** Source Format */
+            source_format: string;
+            /** Rows */
+            rows: components["schemas"]["ImportedTransactionInput-Output"][];
+        };
+        /** ImportedTransactionInput */
+        "ImportedTransactionInput-Input": {
+            /** Identifier */
+            identifier: string;
+            /**
+             * Transaction Date
+             * Format: date
+             */
+            transaction_date: string;
+            /** Description */
+            description: string;
+            direction: components["schemas"]["TransactionDirection"];
+            /** Amount */
+            amount: number | string;
+            /** Category Id */
+            category_id?: number | null;
+            /** Matched Transaction Id */
+            matched_transaction_id?: number | null;
+            /**
+             * Duplicate
+             * @default false
+             */
+            duplicate: boolean;
+        };
+        /** ImportedTransactionInput */
+        "ImportedTransactionInput-Output": {
+            /** Identifier */
+            identifier: string;
+            /**
+             * Transaction Date
+             * Format: date
+             */
+            transaction_date: string;
+            /** Description */
+            description: string;
+            direction: components["schemas"]["TransactionDirection"];
+            /** Amount */
+            amount: string;
+            /** Category Id */
+            category_id?: number | null;
+            /** Matched Transaction Id */
+            matched_transaction_id?: number | null;
+            /**
+             * Duplicate
+             * @default false
+             */
+            duplicate: boolean;
+        };
         /** InstallmentInput */
         InstallmentInput: {
             /** Amount */
@@ -624,6 +1055,10 @@ export interface components {
              * Format: date
              */
             due_date: string;
+            /** Paid Amount */
+            paid_amount?: number | string | null;
+            /** Payment Date */
+            payment_date?: string | null;
         };
         /** InstallmentPreview */
         InstallmentPreview: {
@@ -637,6 +1072,40 @@ export interface components {
              */
             due_date: string;
         };
+        /** InvoiceDetailResponse */
+        InvoiceDetailResponse: {
+            /** Id */
+            id: number;
+            /** Credit Card Id */
+            credit_card_id: number;
+            /**
+             * Closing Date
+             * Format: date
+             */
+            closing_date: string;
+            /**
+             * Due Date
+             * Format: date
+             */
+            due_date: string;
+            status: components["schemas"]["InvoiceStatus"];
+            /** Payment Transaction Id */
+            payment_transaction_id: number | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+            /** Total Amount */
+            total_amount: string;
+            /** Installments */
+            installments: components["schemas"]["TransactionResponse"][];
+        };
         /** InvoicePayment */
         InvoicePayment: {
             /** Account Id */
@@ -648,6 +1117,20 @@ export interface components {
              * Format: date
              */
             effective_date: string;
+            /**
+             * Interest Amount
+             * @default 0.00
+             */
+            interest_amount: number | string;
+            /** Interest Category Id */
+            interest_category_id?: number | null;
+            /**
+             * Late Fee Amount
+             * @default 0.00
+             */
+            late_fee_amount: number | string;
+            /** Late Fee Category Id */
+            late_fee_category_id?: number | null;
         };
         /** InvoiceResponse */
         InvoiceResponse: {
@@ -685,6 +1168,49 @@ export interface components {
          * @enum {string}
          */
         InvoiceStatus: "OPEN" | "CLOSED" | "PAID";
+        /** InvoiceSummaryResponse */
+        InvoiceSummaryResponse: {
+            /** Id */
+            id: number;
+            /** Credit Card Id */
+            credit_card_id: number;
+            /**
+             * Closing Date
+             * Format: date
+             */
+            closing_date: string;
+            /**
+             * Due Date
+             * Format: date
+             */
+            due_date: string;
+            status: components["schemas"]["InvoiceStatus"];
+            /** Payment Transaction Id */
+            payment_transaction_id: number | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+            /** Total Amount */
+            total_amount: string;
+        };
+        /** MonthlyReportResponse */
+        MonthlyReportResponse: {
+            income_completed: components["schemas"]["ReportBucket"];
+            expense_completed: components["schemas"]["ReportBucket"];
+            income_pending: components["schemas"]["ReportBucket"];
+            expense_pending: components["schemas"]["ReportBucket"];
+            overdue_income: components["schemas"]["ReportBucket"];
+            overdue_expense: components["schemas"]["ReportBucket"];
+            /** Without Competence Count */
+            without_competence_count: number | null;
+        };
         /** ProjectedBalanceResponse */
         ProjectedBalanceResponse: {
             /** Account Id */
@@ -793,6 +1319,49 @@ export interface components {
             credit_card_id?: number | null;
             /** Category Id */
             category_id?: number | null;
+        };
+        /** ReconciliationCreate */
+        ReconciliationCreate: {
+            /** Actual Balance */
+            actual_balance: number | string;
+            /**
+             * Reconciliation Date
+             * Format: date
+             */
+            reconciliation_date: string;
+            /** Category Id */
+            category_id: number;
+            /** Description */
+            description: string;
+        };
+        /** ReconciliationResponse */
+        ReconciliationResponse: {
+            /** Id */
+            id: number;
+            /** Account Id */
+            account_id: number;
+            /** Category Id */
+            category_id: number | null;
+            /** Transaction Id */
+            transaction_id: number | null;
+            /**
+             * Reconciliation Date
+             * Format: date
+             */
+            reconciliation_date: string;
+            /** Calculated Balance */
+            calculated_balance: string;
+            /** Actual Balance */
+            actual_balance: string;
+            /** Difference */
+            difference: string;
+            /** Description */
+            description: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
         };
         /** RecurrenceConfirm */
         RecurrenceConfirm: {
@@ -922,6 +1491,13 @@ export interface components {
             /** Refresh Token */
             refresh_token: string;
         };
+        /** ReportBucket */
+        ReportBucket: {
+            /** Total */
+            total: string;
+            /** Count */
+            count: number;
+        };
         /** TokenPair */
         TokenPair: {
             /** Access Token */
@@ -975,6 +1551,18 @@ export interface components {
              * @default false
              */
             amount_locked: boolean;
+            /**
+             * Status
+             * @default PENDING
+             * @enum {string}
+             */
+            status: "PENDING" | "COMPLETED" | "PLANNED" | "PAID";
+            /** Paid Amount */
+            paid_amount?: number | string | null;
+            /** Payment Date */
+            payment_date?: string | null;
+            /** Tags */
+            tags?: string[];
         };
         /**
          * TransactionDirection
@@ -982,6 +1570,32 @@ export interface components {
          * @enum {string}
          */
         TransactionDirection: "INCOME" | "EXPENSE";
+        /** TransactionHistoryResponse */
+        TransactionHistoryResponse: {
+            /** Id */
+            id: number;
+            /** Transaction Id */
+            transaction_id: number;
+            /** Operation Id */
+            operation_id: string;
+            /** Event Type */
+            event_type: string;
+            /** Previous Values */
+            previous_values: {
+                [key: string]: unknown;
+            } | null;
+            /** New Values */
+            new_values: {
+                [key: string]: unknown;
+            };
+            /** Reverses History Id */
+            reverses_history_id: number | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+        };
         /**
          * TransactionPatch
          * @description Fields editable on a transaction in any status.
@@ -991,6 +1605,8 @@ export interface components {
         TransactionPatch: {
             /** Description */
             description?: string | null;
+            /** Account Id */
+            account_id?: number | null;
             /** Estimated Amount */
             estimated_amount?: number | string | null;
             /** Due Date */
@@ -1006,6 +1622,8 @@ export interface components {
             /** Effective Date */
             effective_date?: string | null;
             status?: components["schemas"]["TransactionStatus"] | null;
+            /** Tags */
+            tags?: string[] | null;
         };
         /** TransactionResponse */
         TransactionResponse: {
@@ -1044,6 +1662,8 @@ export interface components {
             installment_total: number | null;
             /** Amount Locked */
             amount_locked: boolean;
+            /** Tags */
+            tags: string[];
             /** Deleted At */
             deleted_at: string | null;
             /**
@@ -1063,6 +1683,60 @@ export interface components {
          * @enum {string}
          */
         TransactionStatus: "PENDING" | "COMPLETED" | "CANCELLED";
+        /** TransactionTemplateCreate */
+        TransactionTemplateCreate: {
+            /** Account Id */
+            account_id: number;
+            /** Category Id */
+            category_id?: number | null;
+            /** Description */
+            description: string;
+            direction: components["schemas"]["TransactionDirection"];
+            /** Amount */
+            amount: number | string;
+            /** Tags */
+            tags?: string[];
+        };
+        /** TransactionTemplateResponse */
+        TransactionTemplateResponse: {
+            /** Id */
+            id: number;
+            /** Account Id */
+            account_id: number;
+            /** Category Id */
+            category_id: number | null;
+            /** Description */
+            description: string;
+            direction: components["schemas"]["TransactionDirection"];
+            /** Amount */
+            amount: string;
+            /** Tags */
+            tags: string[];
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /** TransactionTemplateUpdate */
+        TransactionTemplateUpdate: {
+            /** Account Id */
+            account_id?: number | null;
+            /** Category Id */
+            category_id?: number | null;
+            /** Description */
+            description?: string | null;
+            direction?: components["schemas"]["TransactionDirection"] | null;
+            /** Amount */
+            amount?: number | string | null;
+            /** Tags */
+            tags?: string[] | null;
+        };
         /** TransferCreate */
         TransferCreate: {
             /** From Account Id */
@@ -1108,6 +1782,127 @@ export interface components {
              * Format: date-time
              */
             updated_at: string;
+        };
+        /** UnifiedCardPurchaseCreate */
+        UnifiedCardPurchaseCreate: {
+            /** Description */
+            description: string;
+            /** Total Amount */
+            total_amount: number | string;
+            /**
+             * Purchase Date
+             * Format: date
+             */
+            purchase_date: string;
+            /** Installment Total */
+            installment_total: number;
+            /** Account Id */
+            account_id?: number | null;
+            /** Credit Card Id */
+            credit_card_id?: number | null;
+            /** Category Id */
+            category_id?: number | null;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "CARD_PURCHASE";
+            /** Installments */
+            installments: components["schemas"]["InstallmentInput"][];
+        };
+        /** UnifiedCashTransactionCreate */
+        UnifiedCashTransactionCreate: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "INCOME" | "EXPENSE";
+            /** Account Id */
+            account_id: number;
+            /** Category Id */
+            category_id?: number | null;
+            /** Description */
+            description: string;
+            /** Amount */
+            amount: number | string;
+            /**
+             * Due Date
+             * Format: date
+             */
+            due_date: string;
+            /** Competence */
+            competence?: string | null;
+            /**
+             * Amount Locked
+             * @default false
+             */
+            amount_locked: boolean;
+            /**
+             * Status
+             * @default PENDING
+             * @enum {string}
+             */
+            status: "PENDING" | "COMPLETED" | "PLANNED" | "PAID";
+            /** Paid Amount */
+            paid_amount?: number | string | null;
+            /** Payment Date */
+            payment_date?: string | null;
+            /** Tags */
+            tags?: string[];
+        };
+        /** UnifiedTransferCreate */
+        UnifiedTransferCreate: {
+            /** From Account Id */
+            from_account_id: number;
+            /** To Account Id */
+            to_account_id: number;
+            /** Amount */
+            amount: number | string;
+            /** Description */
+            description?: string | null;
+            /**
+             * Date
+             * Format: date
+             */
+            date: string;
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            kind: "TRANSFER";
+        };
+        /** UpcomingTransactionGroup */
+        UpcomingTransactionGroup: {
+            /**
+             * Due Date
+             * Format: date
+             */
+            due_date: string;
+            /** Count */
+            count: number;
+            /** Total Amount */
+            total_amount: string;
+            /** Transactions */
+            transactions: components["schemas"]["TransactionResponse"][];
+        };
+        /** UpcomingTransactionsResponse */
+        UpcomingTransactionsResponse: {
+            /**
+             * Start Date
+             * Format: date
+             */
+            start_date: string;
+            /**
+             * End Date
+             * Format: date
+             */
+            end_date: string;
+            /** Count */
+            count: number;
+            /** Total Amount */
+            total_amount: string;
+            /** Groups */
+            groups: components["schemas"]["UpcomingTransactionGroup"][];
         };
         /** UserResponse */
         UserResponse: {
@@ -1276,6 +2071,134 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["UserResponse"];
+                };
+            };
+        };
+    };
+    list_monthly_budgets_endpoint_budgets_get: {
+        parameters: {
+            query: {
+                month: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BudgetEntry"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_budget_endpoint_budgets_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BudgetCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CategoryBudgetResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_budget_endpoint_budgets__budget_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                budget_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_budget_endpoint_budgets__budget_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                budget_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["BudgetUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CategoryBudgetResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
@@ -1563,7 +2486,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["InvoiceResponse"][];
+                    "application/json": components["schemas"]["InvoiceSummaryResponse"][];
                 };
             };
             /** @description Validation Error */
@@ -1597,7 +2520,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["InvoiceResponse"];
+                    "application/json": components["schemas"]["InvoiceDetailResponse"];
                 };
             };
             /** @description Validation Error */
@@ -1735,6 +2658,72 @@ export interface operations {
             };
         };
     };
+    list_reconciliations_endpoint_accounts__account_id__reconciliations_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                account_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReconciliationResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_reconciliation_endpoint_accounts__account_id__reconciliations_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                account_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ReconciliationCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ReconciliationResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_account_endpoint_accounts__account_id__get: {
         parameters: {
             query?: never;
@@ -1838,6 +2827,17 @@ export interface operations {
                 status?: components["schemas"]["TransactionStatus"] | null;
                 page?: number;
                 per_page?: number;
+                start_date?: string | null;
+                end_date?: string | null;
+                min_amount?: number | string | null;
+                max_amount?: number | string | null;
+                category_id?: number | null;
+                account_id?: number | null;
+                direction?: components["schemas"]["TransactionDirection"] | null;
+                tags?: string[] | null;
+                text?: string | null;
+                sort_by?: "due_date" | "effective_date" | "amount" | "created_at";
+                sort_order?: "asc" | "desc";
             };
             header?: never;
             path?: never;
@@ -1880,6 +2880,135 @@ export interface operations {
         responses: {
             /** @description Successful Response */
             201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_unified_operation_endpoint_transactions_unified_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UnifiedCashTransactionCreate"] | components["schemas"]["UnifiedTransferCreate"] | components["schemas"]["UnifiedCardPurchaseCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionResponse"] | components["schemas"]["TransferResponse"] | components["schemas"]["PurchaseResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    upcoming_transactions_endpoint_transactions_upcoming_get: {
+        parameters: {
+            query: {
+                /** @description User local date, YYYY-MM-DD */
+                today: string;
+                days?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UpcomingTransactionsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_transaction_history_endpoint_transactions__transaction_id__history_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                transaction_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionHistoryResponse"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    undo_transaction_history_endpoint_transactions__transaction_id__history__history_id__undo_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                transaction_id: number;
+                history_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -2381,6 +3510,292 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PurchaseResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    monthly_report_endpoint_reports_monthly_get: {
+        parameters: {
+            query: {
+                /** @description YYYY-MM */
+                month: string;
+                /** @description User local date, YYYY-MM-DD */
+                today: string;
+                basis?: "cash" | "competence";
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MonthlyReportResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    preview_import_endpoint_imports_preview_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "multipart/form-data": components["schemas"]["Body_preview_import_endpoint_imports_preview_post"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ImportPreviewResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    confirm_import_endpoint_imports__batch_id__confirm_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                batch_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ImportConfirmRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ImportConfirmResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_templates_endpoint_templates_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionTemplateResponse"][];
+                };
+            };
+        };
+    };
+    create_template_endpoint_templates_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TransactionTemplateCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionTemplateResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_template_from_transaction_endpoint_templates_from_transaction__transaction_id__post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                transaction_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionTemplateResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_transaction_from_template_endpoint_templates__template_id__transactions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                template_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CreateFromTemplate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_template_endpoint_templates__template_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                template_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_template_endpoint_templates__template_id__patch: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                template_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TransactionTemplateUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["TransactionTemplateResponse"];
                 };
             };
             /** @description Validation Error */

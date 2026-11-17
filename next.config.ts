@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
         as: "*.css",
       },
     },
-  },
+  }, allowedDevOrigins: ['172.18.205.145']
 };
 
 export default nextConfig;
