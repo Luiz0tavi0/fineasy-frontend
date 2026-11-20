@@ -36,7 +36,7 @@ function AccountForm({ account, onClose }: Readonly<{ account?: Account; onClose
       <Field label="Nome" error={form.formState.errors.name?.message}><Input {...form.register("name")} /></Field>
       <Field label="Tipo" error={form.formState.errors.account_type?.message}>
         <Select {...form.register("account_type")}>
-          <option value="CASH">Dinheiro</option><option value="BANK">Banco</option><option value="WALLET">Carteira</option>
+          <option value="CASH">Dinheiro</option><option value="BANK">Banco</option><option value="WALLET">Carteira1</option>
         </Select>
       </Field>
       <Field label="Saldo inicial" error={form.formState.errors.initial_balance?.message}>
